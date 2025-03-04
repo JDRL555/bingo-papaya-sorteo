@@ -1,42 +1,123 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+body {
+  font-family: Arial, sans-serif;
   text-align: center;
+  background-color: white;
+  color: black;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: start;
+  gap: 30px;
+  width: 100%;
+  margin-top: 20px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.left-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 20%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.figures {
+  gap: 10px;
 }
 
-.card {
-  padding: 2em;
+.figures button {
+  padding: 10px;
+  background-color: rgb(227, 225, 94);
+  color: rgb(55, 137, 55);
+  border: none;
+  margin-bottom: 10px;
+  cursor: pointer;
+  width: 150px;
+  transition: .3s;
+  outline: none;
 }
 
-.read-the-docs {
-  color: #888;
+.figures button:hover {
+  background-color: rgb(253, 252, 171);
+}
+
+.figures button:active {
+  transform: scale(0.9);
+}
+
+.figure-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.selected-figure {
+  font-size: 18px;
+}
+.figure-preview {
+  width: 200px;
+  height: 200px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 5px;
+  background-color: #c9c9c9;
+  padding: 10px;
+  border-radius: 10px;
+}
+.figure-cell {
+  width: 25px;
+  height: 25px;
+  padding: 5px;
+  background-color: white;
+  box-shadow: 2px 2px 2px gray;
+  border-radius: 5px;
+  color: rgb(55, 137, 55);
+}
+.figure-highlight {
+  background-color: rgb(227, 225, 94);
+}
+.right-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+}
+.bingo-board {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  width: 90%;
+  gap: 20px;
+  padding: 20px;
+  background-color: #222;
+  border-radius: 10px;
+}
+.bingo-cell-container {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background: radial-gradient(circle at 30% 30%, #ff6666, #cc0000);
+}
+.bingo-cell {
+  width: 40px;
+  height: 30px;
+  background: radial-gradient(circle at 30% 30%,rgb(255, 255, 255),rgb(108, 108, 108));
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  font-weight: bold;
+  color: black;
+  border: none;
+  box-shadow: inset 2px 2px 5px rgba(255,255,255,0.4), 4px 4px 5px rgba(0,0,0,0.5);
+}
+.mensaje {
+  margin-top: 20px;
+  font-size: 20px;
 }
