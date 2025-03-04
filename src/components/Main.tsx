@@ -5,6 +5,7 @@ import {
 } from '../context/BingoContext'
 import FigureSelector from '../components/FigureSelector'
 import FigurePreview from '../components/FigurePreview'
+import BingoBoard from './BingoBoard'
 
 export default function Main() {
   const bingoContext = useContext(BingoContext) as BingoContextProps
@@ -19,6 +20,7 @@ export default function Main() {
           <FigurePreview />
         </div>
       </div>
+      <BingoBoard />
       {/* <div className="right-column">
         <BingoBoard
           selectedFigure={selectedFigure}
