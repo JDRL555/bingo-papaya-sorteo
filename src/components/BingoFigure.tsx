@@ -7,7 +7,7 @@ export default function BingoFigure() {
   const bingoContext = useContext(BingoContext)
 
   return (
-    <div className="left-column">
+    <div className="figure-options-container">
       <FigureSelector />
       <div className="figure-container">
         <h3 className="selected-figure">

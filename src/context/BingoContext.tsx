@@ -78,8 +78,6 @@ export default function BingoContextProvider({ children }: { children: React.Rea
       .filter(cell => cell.clicked)
       .map(cell => cell.number)
 
-    console.log(newNumbers)
-
     setBingoBoard(newBoard)
     setSelectedNumbers(newNumbers)
   }
@@ -155,8 +153,6 @@ export default function BingoContextProvider({ children }: { children: React.Rea
     Object.keys(newFigure).map(cell => newFigure[cell as Pattern] = pattern.includes(cell as Pattern))
     
     newFigure.n3 = false
-
-    console.log(newFigure);
 
     setFigure(newFigure)
   }

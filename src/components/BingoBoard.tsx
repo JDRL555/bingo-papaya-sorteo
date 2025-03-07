@@ -5,7 +5,7 @@ export default function BingoBoard() {
   const bingoContext = useContext(BingoContext)
 
   return (
-    <div className="right-column">
+    <div className="bingo-board-container">
       <div className="bingo-board">
         {
           bingoContext?.bingoBoard.map((cell) => (

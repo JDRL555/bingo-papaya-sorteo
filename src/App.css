@@ -14,14 +14,14 @@ body {
   margin-top: 20px;
 }
 
-.right-column {
+.bingo-board-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 80%;
 }
 
-.left-column {
+.figure-options-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -34,25 +34,17 @@ body {
   gap: 10px;
 }
 
-.figures button {
+.figures select {
   padding: 10px;
   background-color: white;
   color: rgb(55, 137, 55);
   border: none;
-  margin-bottom: 10px;
+  border-radius: 10px;
+  font-size: 15px;
   cursor: pointer;
-  width: 150px;
+  width: 200px;
   transition: .3s;
   outline: none;
-}
-
-.figures button:hover {
-  background-color: rgb(94, 187, 94);
-  color: white;
-}
-
-.figures button:active {
-  transform: scale(0.9);
 }
 
 .figure-container {

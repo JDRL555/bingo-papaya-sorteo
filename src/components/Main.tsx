@@ -1,11 +1,11 @@
-import FigureSelector from '../components/FigureSelector'
 import BingoBoard from './BingoBoard'
+import BingoFigure from './BingoFigure'
 
 export default function Main() {
   return (
     <main className="container">
       <BingoBoard />
-      <FigureSelector />
+      <BingoFigure />
     </main>
   )
 }
