@@ -28,16 +28,18 @@ export default function FigureSelector() {
   }
 
   return (
-    <div className="figures">
-      <h2>Selecciona una figura:</h2>
-      {figures.map((figure) => (
-        <button
-          key={figure}
-          onClick={() => handleSelectFigure(figure)}
-        >
-          {figure.replace('_', ' ')}
-        </button>
-      ))}
+    <div className='left-column'>
+      <div className="figures">
+        <h2>Selecciona una figura:</h2>
+        {figures.map((figure) => (
+          <button
+            key={figure}
+            onClick={() => handleSelectFigure(figure)}
+          >
+            {figure.replace('_', ' ')}
+          </button>
+        ))}
+      </div>
     </div>
   )
 }

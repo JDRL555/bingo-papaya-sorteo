@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import { FigureName, FigurePattern, Pattern } from '../types/BingoFigure.types';
+import { BingoCell } from '../types/BingoBoard.types';
+import { BINGO_COLORS } from '../constants/BingoColors';
 
 export interface BingoContextProps {
   figure: FigurePattern
   selectedFigure: FigureName
   selectedNumbers: number[]
+  bingoBoard: BingoCell[],
+  onClickCell: (num: number) => void,
   setSelectedNumbers: (numbers: number[]) => void
   generateFigure: (figure: FigureName) => void
 }
@@ -12,6 +16,24 @@ export interface BingoContextProps {
 const BingoContext = React.createContext<BingoContextProps | undefined>(undefined);
 
 export default function BingoContextProvider({ children }: { children: React.ReactNode }) {
+
+  const getCellColor = (num: number) => {
+    if(num >= 1 && num <= 15) return BINGO_COLORS.B
+    if(num >= 16 && num <= 30) return BINGO_COLORS.I
+    if(num >= 31 && num <= 45) return BINGO_COLORS.N
+    if(num >= 46 && num <= 60) return BINGO_COLORS.G
+    if(num >= 61 && num <= 75) return BINGO_COLORS.O
+    return []
+  }
+
+  const getCellLetter = (num: number) => {
+    if(num >= 1 && num <= 15) return "B"
+    if(num >= 16 && num <= 30) return "I"
+    if(num >= 31 && num <= 45) return "N"
+    if(num >= 46 && num <= 60) return "G"
+    if(num >= 61 && num <= 75) return "O"
+    return ""
+  }
 
   const [ figure, setFigure ] = useState<FigurePattern>({
     "b1": true, "i1": true, "n1": true, "g1": true, "o1": true,
@@ -21,9 +43,46 @@ export default function BingoContextProvider({ children }: { children: React.Rea
     "b5": true, "i5": true, "n5": true, "g5": true, "o5": true
   })
 
+  const [bingoBoard, setBingoBoard] = useState<BingoCell[]>(
+    Array.from({ length: 75 }).map((_, index) => {
+      const num = index + 1
+      return {
+        number: num,
+        colors: ["#707070", "#1e1e1e"],
+        clicked: false,
+        letter: getCellLetter(num)
+      }
+    })
+  )
+
   const [ selectedFigure ] = useState<FigureName>('carton_lleno')
   
   const [ selectedNumbers, setSelectedNumbers ] = useState<number[]>([])
+
+  const onClickCell = (num: number) => {
+
+    const foundCell = bingoBoard.find(cell => num === cell.number)
+
+    if(foundCell) {
+      foundCell.colors = foundCell.clicked ? ["#707070", "#1e1e1e"] : getCellColor(num)
+      foundCell.clicked = !foundCell.clicked
+    }
+
+    const newBoard = bingoBoard.map(
+      cell => cell.number === foundCell?.number
+      ? foundCell
+      : cell
+    )
+
+    const newNumbers = newBoard
+      .filter(cell => cell.clicked)
+      .map(cell => cell.number)
+
+    console.log(newNumbers)
+
+    setBingoBoard(newBoard)
+    setSelectedNumbers(newNumbers)
+  }
 
   const generateFigure = (figureName: FigureName): void => {
 
@@ -105,6 +164,8 @@ export default function BingoContextProvider({ children }: { children: React.Rea
   return (
     <BingoContext.Provider value={{ 
       figure,
+      bingoBoard,
+      onClickCell,
       selectedFigure,
       selectedNumbers,
       setSelectedNumbers,

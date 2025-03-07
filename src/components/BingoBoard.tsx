@@ -1,12 +1,25 @@
+import { useContext } from 'react'
+import { BingoContext } from '../context/BingoContext'
+
 export default function BingoBoard() {
+  const bingoContext = useContext(BingoContext)
+
   return (
     <div className="right-column">
       <div className="bingo-board">
         {
-          Array.from({ length: 75 }).map((_, index) => (
-            <div className="bingo-cell-container" key={index}>
+          bingoContext?.bingoBoard.map((cell) => (
+            <div 
+              className="bingo-cell-container" 
+              style={{ 
+                background: `radial-gradient(circle at 30% 30%,${cell.colors[0]},${cell.colors[1]})`,
+              }}
+              data-letter={cell.letter}
+              key={cell.number}
+              onClick={() => bingoContext?.onClickCell(cell.number)}
+            >
               <div className="bingo-cell">
-                <p>{index + 1}</p>
+                <p>{cell.number}</p>
               </div>
             </div>
           ))
