@@ -1,0 +1,129 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background-color: rgb(227, 225, 94);
+  color: rgb(55, 137, 55);
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: start;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.bingo-board-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+}
+
+.figure-options-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+  width: 20%;
+}
+
+.figures {
+  gap: 10px;
+}
+
+.figures select {
+  padding: 10px;
+  background-color: white;
+  color: rgb(55, 137, 55);
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  cursor: pointer;
+  width: 200px;
+  transition: .3s;
+  outline: none;
+}
+
+.figure-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.selected-figure {
+  font-size: 18px;
+}
+.figure-preview {
+  width: 200px;
+  height: 200px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 5px;
+  background-color: rgb(94, 187, 94);
+  padding: 10px;
+  border-radius: 10px;
+}
+.figure-cell {
+  width: 25px;
+  height: 25px;
+  padding: 5px;
+  background-color: white;
+  box-shadow: 2px 2px 2px gray;
+  border-radius: 5px;
+  color: rgb(55, 137, 55);
+}
+.figure-highlight {
+  background-color: rgb(227, 225, 94);
+}
+.bingo-board {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  width: 90%;
+  gap: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: rgb(94, 187, 94);
+}
+.bingo-cell-container {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.bingo-cell-container:active {
+  transform: scale(0.9);
+}
+
+.bingo-cell-container::before {
+  content: attr(data-letter);
+  color: white;
+  position: absolute;
+  padding-bottom: 45px;
+  font-size: 12px;
+}
+.bingo-cell {
+  width: 35px;
+  height: 35px;
+  background: radial-gradient(circle at 30% 30%,rgb(255, 255, 255),rgb(108, 108, 108));
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  font-weight: bold;
+  color: black;
+  border: none;
+  box-shadow: inset 2px 2px 5px rgba(255,255,255,0.4), 4px 4px 5px rgba(0,0,0,0.5);
+}
+.mensaje {
+  margin-top: 20px;
+  font-size: 20px;
+}
