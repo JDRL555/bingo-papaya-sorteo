@@ -77,6 +77,9 @@ body {
 .figure-highlight {
   background-color: rgb(227, 225, 94);
 }
+.winners {
+  margin-top: 10px;
+}
 .bingo-board {
   display: grid;
   grid-template-columns: repeat(10, 1fr);

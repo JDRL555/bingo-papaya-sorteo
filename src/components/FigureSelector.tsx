@@ -12,8 +12,10 @@ export default function FigureSelector() {
   const bingoContext = useContext(BingoContext) as BingoContextProps
   
   const handleSelectFigure = (figureName: FigureName) => {
+    bingoContext.setFigureName(figureName)
     bingoContext.generateFigure(figureName)
     bingoContext.setSelectedNumbers([])
+    bingoContext.setWinners("No hay ganadores aún")
     bingoContext.bingoBoard.map(cell => cell.colors = ["#707070", "#1e1e1e"])
     bingoContext.bingoBoard.map(cell => cell.clicked = false)
   }

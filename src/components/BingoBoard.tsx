@@ -6,6 +6,8 @@ import { BingoContext, BingoContextProps } from '../context/BingoContext'
 export default function BingoBoard() {
   const {
     selectedNumbers,
+    setWinners,
+    figureName,
     figure,
     onClickCell,
     bingoBoard
@@ -18,13 +20,22 @@ export default function BingoBoard() {
           selectedNumbers,
           figure,
         })
-
         const { winners } = response.data
         
         if (winners.length > 0) {
-          console.log(`¡Total de ganadores: ${winners.length}!\n\n${winners.join("\n")}`)
+
+          winners.map(async (idcarton: number) => {
+            const winnersResponse = await axios.post("/api/winner", {
+              idcarton,
+              figura: figureName,
+              premio: 5000 // Esto es temporal
+            })
+            console.log(winnersResponse.data)
+          })
+
+          setWinners(`¡Tenemos ${winners.length} ganador(es)!`)
         } else {
-          console.log("No hay ganadores aún")
+          setWinners("No hay ganadores aún")
         }
       } catch (error) {
         console.error(error)

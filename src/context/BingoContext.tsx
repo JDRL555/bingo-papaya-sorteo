@@ -6,12 +6,14 @@ import { BINGO_COLORS } from '../constants/BingoColors'
 
 export interface BingoContextProps {
   figure: FigurePattern
+  figureName: FigureName
   selectedFigure: FigureName
   selectedNumbers: number[]
   bingoBoard: BingoCell[],
   winners: string,
   setBingoBoard: (bingoBoard: BingoCell[]) => void
   setSelectedNumbers: (numbers: number[]) => void
+  setFigureName: (figureName: FigureName) => void
   setWinners: (winner: string) => void
   onClickCell: (num: number) => Promise<void>
   generateFigure: (figure: FigureName) => void
@@ -22,6 +24,8 @@ const BingoContext = React.createContext<BingoContextProps | undefined>(undefine
 export default function BingoContextProvider({ children }: { children: React.ReactNode }) {
 
   const [winners, setWinners] = useState<string>("No hay ganadores aún")
+
+  const [figureName, setFigureName] = useState<FigureName>("carton_lleno")
 
   const getCellColor = (num: number) => {
     if(num >= 1 && num <= 15) return BINGO_COLORS.B
@@ -166,11 +170,13 @@ export default function BingoContextProvider({ children }: { children: React.Rea
   return (
     <BingoContext.Provider value={{ 
       figure,
+      figureName,
       bingoBoard,
       winners,
       setBingoBoard,
       selectedFigure,
       setSelectedNumbers,
+      setFigureName,
       setWinners,
       onClickCell,
       selectedNumbers,

@@ -34,7 +34,7 @@ const searchWinners = async (selectedNumbers: number[], figure: FigurePattern) =
     return interseccion.length >= figuraPosiciones.length
   })
 
-  return ganadores.map((g) => g.nombre)
+  return ganadores.map((g) => g.idcarton)
 }
 
 const generateFigurePositions = (figure: FigurePattern): number[] => {

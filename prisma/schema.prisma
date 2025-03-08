@@ -41,4 +41,16 @@ model Carton {
   telefono        String?   @db.VarChar(45)
   correo          String?   @db.VarChar(45)
   verificado      Int?      @db.SmallInt
+
+  Ganadores Ganadores[]
+}
+
+model Ganadores {
+  idganadores Int    @id @default(autoincrement())
+  idcarton    Int     @db.Int
+  fecha       DateTime @db.DateTime(0) @default(now())
+  figura      String   @db.VarChar(45)
+  premio      Float
+
+  carton      Carton @relation(fields: [idcarton], references: [idcarton])
 }

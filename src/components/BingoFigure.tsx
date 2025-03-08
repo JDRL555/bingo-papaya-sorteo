@@ -3,6 +3,7 @@ import { useContext } from 'react'
 import { BingoContext } from '../context/BingoContext'
 import FigureSelector from './FigureSelector'
 import FigurePreview from './FigurePreview'
+import Winners from './Winners'
 
 export default function BingoFigure() {
   const bingoContext = useContext(BingoContext)
@@ -15,6 +16,7 @@ export default function BingoFigure() {
           Estamos jugando: <br /> {bingoContext?.selectedFigure.replace('_', ' ')}
         </h3>
         <FigurePreview />
+        <Winners />
       </div>
     </div>
   )
