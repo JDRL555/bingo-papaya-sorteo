@@ -31,7 +31,10 @@ export default function BingoBoard() {
       }
     }
 
-    fetchWinners()
+    if(selectedNumbers.length !== 0) {
+      fetchWinners()
+    }
+
   }, [selectedNumbers, figure])
 
   return (
