@@ -7,6 +7,26 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Figures {
+  carton_lleno
+  linea_horizontal
+  linea_vertical
+  figura_1
+  figura_2
+  figura_3
+  figura_4
+  figura_5
+}
+
+model Sorteo {
+  idsorteo    Int @id @default(autoincrement())
+  fecha       DateTime @db.DateTime(0)
+  figura      Figures
+  premio      Float
+
+  ganadores   Ganadores?
+}
+
 model Carton {
   idcarton        Int       @id @default(autoincrement())
   b1              Int?
@@ -48,9 +68,10 @@ model Carton {
 model Ganadores {
   idganadores Int    @id @default(autoincrement())
   idcarton    Int     @db.Int
-  fecha       DateTime @db.DateTime(0) @default(now())
-  figura      String   @db.VarChar(45)
+  idsorteo    Int     @db.Int @unique
   premio      Float
+  fecha       DateTime @db.DateTime(0) @default(now())
 
   carton      Carton @relation(fields: [idcarton], references: [idcarton])
+  sorteo      Sorteo @relation(fields: [idsorteo], references: [idsorteo])
 }

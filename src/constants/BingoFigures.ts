@@ -1,12 +1,41 @@
 import { FigureName } from "../types/BingoFigure.types";
 
-export const FIGURES: FigureName[] = [
-  'carton_lleno',
-  'linea_horizontal',
-  'linea_vertical',
-  'figura_1',
-  'figura_2',
-  'figura_3',
-  'figura_4',
-  'figura_5',
+interface Figure {
+  name: FigureName,
+  gain: number,
+}
+
+export const FIGURES: Figure[] = [
+  {
+    name: "carton_lleno",
+    gain: 20
+  },
+  {
+    name: "linea_horizontal",
+    gain: 15
+  },
+  {
+    name: "linea_vertical",
+    gain: 15
+  },
+  {
+    name: "figura_1",
+    gain: 10
+  },
+  {
+    name: "figura_2",
+    gain: 10
+  },
+  {
+    name: "figura_3",
+    gain: 10
+  },
+  {
+    name: "figura_4",
+    gain: 10
+  },
+  {
+    name: "figura_5",
+    gain: 10
+  },
 ]

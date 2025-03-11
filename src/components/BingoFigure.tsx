@@ -1,7 +1,6 @@
 "use client"
 import { useContext } from 'react'
 import { BingoContext } from '../context/BingoContext'
-import FigureSelector from './FigureSelector'
 import FigurePreview from './FigurePreview'
 import Winners from './Winners'
 
@@ -10,7 +9,6 @@ export default function BingoFigure() {
 
   return (
     <div className="figure-options-container">
-      <FigureSelector />
       <div className="figure-container">
         <h3 className="selected-figure">
           Estamos jugando: <br /> {bingoContext?.selectedFigure.replace('_', ' ')}
