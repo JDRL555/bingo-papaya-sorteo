@@ -1,18 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { PrismaClient } from '@prisma/client'
-import { FigureName } from '@/types/BingoFigure.types'
 
 const prisma = new PrismaClient()
 
 export async function POST(req: NextRequest) {
   const {
     idcarton,
-    figura,
+    idsorteo,
     premio
   } = await req.json()
 
   try {
-    const saved = await saveWinner(idcarton, figura, premio)
+    const saved = await saveWinner(idcarton, idsorteo, premio)
 
     return NextResponse.json({ 
       response: saved ? "Saved!" : "Not saved, winner already exists" 
@@ -30,20 +29,20 @@ export async function POST(req: NextRequest) {
 
 async function saveWinner(
   idcarton: number,
-  figura: FigureName,
+  idsorteo: number,
   premio: number
 ) {
   const winner = await prisma.ganadores.findFirst({
     where: {
       idcarton,
-      figura
+      idsorteo
     }
   })
   if(!winner) {
     await prisma.ganadores.create({
       data: {
         idcarton,
-        figura,
+        idsorteo,
         premio
       }
     })

@@ -130,11 +130,11 @@ body {
   margin-top: 20px;
   font-size: 20px;
 }
-.not-found {
+.loading-cointainer {
   margin: 10px;
 }
 
-.not-found img {
+.loading-cointainer img {
   width: 300px;
   height: 300px;
 }

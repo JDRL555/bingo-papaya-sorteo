@@ -20,9 +20,10 @@ enum Figures {
 
 model Sorteo {
   idsorteo    Int @id @default(autoincrement())
-  fecha       DateTime @db.DateTime(0)
+  fecha       String
   figura      Figures
   premio      Float
+  gano        Boolean @default(false)
 
   ganadores   Ganadores?
 }
