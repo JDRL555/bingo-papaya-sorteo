@@ -5,7 +5,7 @@ import { BingoCell } from "./BingoBoard.types";
 export interface BingoGame {
   draws: Sorteo[],
   figure: FigurePattern,
-  selectedDraw: Sorteo | null,
+  selectedDraw: Sorteo,
   selectedNumbers: number[],
   bingoBoard: BingoCell[]
 }

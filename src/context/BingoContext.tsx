@@ -38,24 +38,26 @@ export default function BingoContextProvider({ children }: { children: React.Rea
   }
 
   const onClickCell = async (num: number): Promise<void> => {
-    const newBoard = bingo.bingoBoard.map(cell => {
-      if (cell.number === num) {
-        return {
-          ...cell,
-          clicked: !cell.clicked,
-          colors: cell.clicked ? ["#707070", "#1e1e1e"] : getCellColor(num),
+    if(!bingo.selectedDraw.gano) {
+      const newBoard = bingo.bingoBoard.map(cell => {
+        if (cell.number === num) {
+          return {
+            ...cell,
+            clicked: !cell.clicked,
+            colors: cell.clicked ? ["#707070", "#1e1e1e"] : getCellColor(num),
+          }
         }
-      }
-      return cell
-    })
-  
-    const newNumbers = newBoard.filter(cell => cell.clicked).map(cell => cell.number)
-  
-    setBingo({
-      ...bingo,
-      bingoBoard: newBoard,
-      selectedNumbers: newNumbers,
-    })
+        return cell
+      })
+    
+      const newNumbers = newBoard.filter(cell => cell.clicked).map(cell => cell.number)
+    
+      setBingo({
+        ...bingo,
+        bingoBoard: newBoard,
+        selectedNumbers: newNumbers,
+      })
+    }
   }
   
 
@@ -77,7 +79,7 @@ export default function BingoContextProvider({ children }: { children: React.Rea
         letter: getCellLetter(num)
       }
     }),
-    selectedDraw: null,
+    selectedDraw: {},
     selectedNumbers: []
   })
 

@@ -43,7 +43,16 @@ async function saveWinner(
       data: {
         idcarton,
         idsorteo,
-        premio
+        premioreferencia: premio
+      }
+    })
+
+    await prisma.sorteo.update({
+      data: {
+        gano: true
+      },
+      where: {
+        idsorteo
       }
     })
     return true

@@ -67,12 +67,13 @@ model Carton {
 }
 
 model Ganadores {
-  idganadores Int    @id @default(autoincrement())
-  idcarton    Int     @db.Int
-  idsorteo    Int     @db.Int @unique
-  premio      Float
-  fecha       DateTime @db.DateTime(0) @default(now())
+  idganadores       Int    @id @default(autoincrement())
+  idcarton          Int     @db.Int
+  idsorteo          Int     @db.Int @unique
+  premioreferencia  Float
+  premio_ganado     Float?
+  fecha             DateTime @db.DateTime(0) @default(now())
 
-  carton      Carton @relation(fields: [idcarton], references: [idcarton])
-  sorteo      Sorteo @relation(fields: [idsorteo], references: [idsorteo])
+  carton            Carton @relation(fields: [idcarton], references: [idcarton])
+  sorteo            Sorteo @relation(fields: [idsorteo], references: [idsorteo])
 }

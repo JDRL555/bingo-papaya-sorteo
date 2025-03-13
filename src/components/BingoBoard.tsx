@@ -7,6 +7,7 @@ import { BingoContext, BingoContextProps } from "../context/BingoContext"
 export default function BingoBoard() {
   const {
     bingo,
+    setBingo,
     setWinners,
     onClickCell,
   } = useContext(BingoContext) as BingoContextProps
@@ -24,12 +25,21 @@ export default function BingoBoard() {
 
         if (winners.length > 0) {
           winners.map(async (idcarton: number) => {
-            const winnersResponse = await axios.post("/api/winner", {
+
+            await axios.post("/api/winner", {
               idcarton,
               idsorteo: selectedDraw?.idsorteo,
-              premio: selectedDraw?.premio
+              premio: selectedDraw?.premio / winners.length
             })
-            console.log(winnersResponse.data)
+
+            setBingo({
+              ...bingo,
+              selectedDraw: {
+                ...bingo.selectedDraw,
+                gano: true
+              }
+            })
+
           })
 
           setWinners(`¡Tenemos ${winners.length} ganador(es)!`)
@@ -44,7 +54,7 @@ export default function BingoBoard() {
     if (selectedNumbers.length !== 0) {
       fetchWinners()
     }
-  }, [selectedNumbers, figure])
+  }, [selectedNumbers])
 
   return (
     <div className="bingo-board-container">

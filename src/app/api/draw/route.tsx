@@ -17,13 +17,7 @@ export async function GET() {
 
     return NextResponse.json({ 
       error: draws.length === 0 ? "No se encontró ningún sorteo el día de hoy" : "",
-      draws: draws.map(draw => { 
-        return { 
-          idsorteo: draw.idsorteo, 
-          figura: draw.figura,
-          premio: draw.premio,
-        } 
-      })
+      draws
     }, { 
       status: draws.length !== 0 ? 200 : 404 
     })

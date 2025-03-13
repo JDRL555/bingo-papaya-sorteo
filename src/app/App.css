@@ -138,3 +138,12 @@ body {
   width: 300px;
   height: 300px;
 }
+
+.next-draw {
+  background-color: rgb(94, 187, 94);
+  color: rgb(227, 225, 94);
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}

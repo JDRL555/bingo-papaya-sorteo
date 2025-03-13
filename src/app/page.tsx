@@ -34,8 +34,8 @@ export default function App() {
             ...bingo,
             draws: data.draws,
             selectedDraw: {
-              ...data.draws[1],
-              premio: data.draws[1].premio * 0.60
+              ...data.draws[0],
+              premio: data.draws[0].premio * 0.60
             },
           })
           setError(null) 
@@ -44,7 +44,7 @@ export default function App() {
           setBingo({
             ...bingo,
             draws: [],
-            selectedDraw: null, 
+            selectedDraw: {}, 
           })
         }
       } catch (err) {
