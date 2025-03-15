@@ -44,7 +44,13 @@ export default function App() {
           setBingo({
             ...bingo,
             draws: [],
-            selectedDraw: {}, 
+            selectedDraw: {
+              idsorteo: 0,
+              fecha: "",
+              figura: "carton_lleno",
+              gano: false,
+              premio: 0
+            }, 
           })
         }
       } catch (err) {
