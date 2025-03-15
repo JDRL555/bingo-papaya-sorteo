@@ -6,6 +6,8 @@ const prisma = new PrismaClient()
 export async function GET() {
   const month = new Date().getMonth() + 1
   const currenDate = `${new Date().getFullYear()}-${month <= 10 ? "0" + month : month}-${new Date().getDate()}`
+
+  console.log(currenDate);
   
   try {
     const draws = await prisma.sorteo.findMany({
@@ -14,6 +16,8 @@ export async function GET() {
         gano: false
       }
     })
+
+  console.log(draws);
 
     return NextResponse.json({ 
       error: draws.length === 0 ? "No se encontró ningún sorteo el día de hoy" : "",
