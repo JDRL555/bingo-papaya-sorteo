@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { Carton, PrismaClient } from '@prisma/client'
+import { carton, PrismaClient } from '@prisma/client'
 import { FigurePattern } from '@/types/BingoFigure.types'
 
 const prisma = new PrismaClient()
@@ -48,7 +48,7 @@ const generateFigurePositions = (figure: FigurePattern): number[] => {
   return positions
 }
 
-const getCartonNumbers = (carton: Carton): number[] => {
+const getCartonNumbers = (carton: carton): number[] => {
   const numbers = [
     carton.b1 || 0, carton.i1 || 0, carton.n1 || 0, carton.g1 || 0, carton.o1 || 0,
     carton.b2 || 0, carton.i2 || 0, carton.n2 || 0, carton.g2 || 0, carton.o2 || 0,
