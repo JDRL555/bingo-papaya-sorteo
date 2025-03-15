@@ -20,6 +20,8 @@ export async function GET() {
       }
     })
 
+  console.log(draws);
+
     return NextResponse.json({ 
       error: draws.length === 0 ? "No se encontró ningún sorteo el día de hoy" : "",
       draws
