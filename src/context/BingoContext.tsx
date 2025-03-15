@@ -2,12 +2,12 @@
 import React, { useState } from 'react'
 import { FigureName, Pattern } from '../types/BingoFigure.types'
 import { BINGO_COLORS } from '../constants/BingoColors'
-import { BingoGame } from '@/types/Bingo.types'
+import { BingoGame, BingoWiner } from '@/types/Bingo.types'
 
 export interface BingoContextProps {
   bingo: BingoGame,
-  winners: string,
-  setWinners: (winner: string) => void
+  winners: BingoWiner[],
+  setWinners: (winners: BingoWiner[]) => void
   setBingo: (bingo: BingoGame) => void,
   onClickCell: (num: number) => Promise<void>
   generateFigure: (figure: FigureName) => void
@@ -17,7 +17,7 @@ const BingoContext = React.createContext<BingoContextProps | undefined>(undefine
 
 export default function BingoContextProvider({ children }: { children: React.ReactNode }) {
 
-  const [winners, setWinners] = useState<string>("No hay ganadores aún")
+  const [winners, setWinners] = useState<BingoWiner[]>([])
 
   const getCellColor = (num: number) => {
     if(num >= 1 && num <= 15) return BINGO_COLORS.B

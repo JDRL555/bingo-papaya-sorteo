@@ -12,10 +12,28 @@ export default function Winners() {
   const searchParams = useSearchParams()
   const linkdirecto = searchParams.get('linkdirecto')
 
-  if(winners != "No hay ganadores aún") {
+  if(winners.length !== 0) {
     return (
       <div className='winners'>
-        <h2>{winners}</h2>
+        <h2>¡Tenemos {winners.length} ganador/es!</h2>
+        <table className='winners-table'>
+          <thead>
+            <tr>
+              <th>ID del carton</th>
+              <th>Nombre del ganador</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              winners.map(winner => (
+                <tr key={winner.idcarton}>
+                  <td>{winner.idcarton}</td>
+                  <td>{winner.nombre}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
         <a className='next-draw' href={`/?linkdirecto=${linkdirecto}`}>
           Siguiente sorteo
         </a>

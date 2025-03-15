@@ -3,6 +3,7 @@
 import { useContext, useEffect } from "react"
 import axios from "axios"
 import { BingoContext, BingoContextProps } from "../context/BingoContext"
+import { BingoWiner } from "@/types/Bingo.types"
 
 export default function BingoBoard() {
   const {
@@ -24,10 +25,10 @@ export default function BingoBoard() {
         const { winners } = response.data
 
         if (winners.length > 0) {
-          winners.map(async (idcarton: number) => {
+          winners.map(async (carton: BingoWiner) => {
 
             await axios.post("/api/winner", {
-              idcarton,
+              idcarton: carton.idcarton,
               idsorteo: selectedDraw?.idsorteo,
               premio: selectedDraw?.premio / winners.length
             })
@@ -42,9 +43,9 @@ export default function BingoBoard() {
 
           })
 
-          setWinners(`¡Tenemos ${winners.length} ganador(es)!`)
+          setWinners(winners)
         } else {
-          setWinners("No hay ganadores aún")
+          setWinners([])
         }
       } catch (error) {
         console.error(error)

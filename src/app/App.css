@@ -147,3 +147,7 @@ body {
   border-radius: 10px;
   cursor: pointer;
 }
+
+.winners-table {
+  margin-bottom: 30px;
+}

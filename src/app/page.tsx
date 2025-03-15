@@ -29,30 +29,30 @@ export default function App() {
         const response = await fetch(`/api/draw`)
         const data = await response.json()
 
-        setBingo({
-          ...bingo,
-          draws: data.draws,
-          selectedDraw: {
-            ...data.draws[0],
-            premio: data.draws[0].premio * 0.60
-          },
-        })
-        setError(null) 
-        // if (data.draws?.length > 0) {
-        // } else {
-        //   setError("No se encontró ningún sorteo para hoy.")
-        //   setBingo({
-        //     ...bingo,
-        //     draws: [],
-        //     selectedDraw: {
-        //       idsorteo: 0,
-        //       fecha: "",
-        //       figura: "carton_lleno",
-        //       gano: false,
-        //       premio: 0
-        //     }, 
-        //   })
-        // }
+        if (data.draws?.length > 0) {
+          setBingo({
+            ...bingo,
+            draws: data.draws,
+            selectedDraw: {
+              ...data.draws[0],
+              premio: data.draws[0].premio * 0.60
+            },
+          })
+          setError(null) 
+        } else {
+          setError("No se encontró ningún sorteo para hoy.")
+          setBingo({
+            ...bingo,
+            draws: [],
+            selectedDraw: {
+              idsorteo: 0,
+              fecha: "",
+              figura: "carton_lleno",
+              gano: false,
+              premio: 0
+            }, 
+          })
+        }
       } catch (err) {
         console.error("Error al cargar los sorteos:", err)
         setError("Ocurrió un error al cargar los sorteos.")

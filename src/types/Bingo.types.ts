@@ -9,3 +9,8 @@ export interface BingoGame {
   selectedNumbers: number[],
   bingoBoard: BingoCell[]
 }
+
+export interface BingoWiner { 
+  idcarton: number, 
+  nombre: string 
+}
