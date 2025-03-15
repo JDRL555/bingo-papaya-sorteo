@@ -18,17 +18,17 @@ enum Figures {
   figura_5
 }
 
-model Sorteo {
+model sorteo {
   idsorteo    Int @id @default(autoincrement())
   fecha       String
   figura      Figures
   premio      Float
   gano        Boolean @default(false)
 
-  ganadores   Ganadores?
+  ganadores   ganadores?
 }
 
-model Carton {
+model carton {
   idcarton        Int       @id @default(autoincrement())
   b1              Int?
   i1              Int?
@@ -63,10 +63,10 @@ model Carton {
   correo          String?   @db.VarChar(45)
   verificado      Int?      @db.SmallInt
 
-  Ganadores Ganadores[]
+  Ganadores ganadores[]
 }
 
-model Ganadores {
+model ganadores {
   idganadores       Int    @id @default(autoincrement())
   idcarton          Int     @db.Int
   idsorteo          Int     @db.Int @unique
@@ -74,6 +74,6 @@ model Ganadores {
   premio_ganado     Float?
   fecha             DateTime @db.DateTime(0) @default(now())
 
-  carton            Carton @relation(fields: [idcarton], references: [idcarton])
-  sorteo            Sorteo @relation(fields: [idsorteo], references: [idsorteo])
+  carton            carton @relation(fields: [idcarton], references: [idcarton])
+  sorteo            sorteo @relation(fields: [idsorteo], references: [idsorteo])
 }
