@@ -59,3 +59,5 @@ const getCartonNumbers = (carton: Carton): number[] => {
 
   return numbers
 }
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
