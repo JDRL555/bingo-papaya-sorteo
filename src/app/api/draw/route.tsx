@@ -4,8 +4,11 @@ import { NextResponse } from 'next/server'
 const prisma = new PrismaClient()
 
 export async function GET() {
-  const month = new Date().getMonth() + 1
-  const currenDate = `${new Date().getFullYear()}-${month <= 10 ? "0" + month : month}-${new Date().getDate()}`
+  const fecha = new Date();
+  const fechaVenezuela = new Date(fecha.toLocaleString('en-US', { timeZone: 'America/Caracas' }));
+
+  const month = fechaVenezuela.getMonth() + 1
+  const currenDate = `${fechaVenezuela.getFullYear()}-${month <= 10 ? "0" + month : month}-${fechaVenezuela.getDate()}`
 
   console.log(currenDate);
   
@@ -16,8 +19,6 @@ export async function GET() {
         gano: false
       }
     })
-
-  console.log(draws);
 
     return NextResponse.json({ 
       error: draws.length === 0 ? "No se encontró ningún sorteo el día de hoy" : "",
