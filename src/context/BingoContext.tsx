@@ -79,7 +79,13 @@ export default function BingoContextProvider({ children }: { children: React.Rea
         letter: getCellLetter(num)
       }
     }),
-    selectedDraw: {},
+    selectedDraw: {
+      idsorteo: 0,
+      fecha: "",
+      figura: "carton_lleno",
+      gano: false,
+      premio: 0
+    },
     selectedNumbers: []
   })
 
