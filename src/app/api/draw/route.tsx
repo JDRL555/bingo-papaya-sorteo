@@ -25,3 +25,5 @@ export async function GET() {
     return NextResponse.json({ error: (error as Error).message, draw: {} }, { status: 500 })
   }
 }
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
