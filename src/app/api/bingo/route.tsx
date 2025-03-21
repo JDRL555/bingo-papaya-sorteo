@@ -16,6 +16,7 @@ export async function POST(req: NextRequest) {
 }
 
 const searchWinners = async (selectedNumbers: number[], figure: FigurePattern) => {
+  
   const cartones = await prisma.carton.findMany({
     where: {
       verificado: {
@@ -23,6 +24,7 @@ const searchWinners = async (selectedNumbers: number[], figure: FigurePattern) =
       }
     },
   })
+  const patterns = Object.values(figure).filter(value => value === true)
 
   const figuraPosiciones = generateFigurePositions(figure)
 
@@ -34,12 +36,23 @@ const searchWinners = async (selectedNumbers: number[], figure: FigurePattern) =
     return interseccion.length >= figuraPosiciones.length
   })
 
-  return ganadores.map((g) => {
+  const ganadoresLista = ganadores.map((g) => {
     return {
       idcarton: g.idcarton, 
       nombre: g.nombre
     }
   })
+
+  if(patterns.length === 24) {
+    if(ganadores.length !== 0) {
+      console.log("AJA");
+      return [ganadoresLista[0]]
+    } else {
+      return ganadoresLista
+    }
+  } else {
+    return ganadoresLista
+  }
 }
 
 const generateFigurePositions = (figure: FigurePattern): number[] => {
